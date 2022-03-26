@@ -21,7 +21,7 @@ function Suggestions() {
                 <button className='text-gray-600 font-semibold'>See All</button>
             </div>
             {
-                suggestions.map((profile) => (
+                suggestions?.map((profile) => (
                     <div key={profile.id} className="flex items-center justify-between mt-3">
                         <img src={profile.avatar} alt=""
                             className='w-10 h-10 rounded-full  p-[2px] '
