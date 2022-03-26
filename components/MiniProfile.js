@@ -2,10 +2,10 @@ import React from 'react'
 
 function MiniProfile() {
     return (
-        <div className='flex items-center justify-between mt-14 ml-10'>
+        <div className='flex items-center justify-between mt-14 ml-6'>
             <img src="https://m-murmu.vercel.app/static/83c766a9376b1665e55a2bf6922a57c2/08f62/mohendra-murmu.webp"
                 alt=""
-                className='rounded-full border p-[2px] w-16 h-16'
+                className='rounded-full border p-[2px] w-14 h-14'
             />
             <div className='flex-1 mx-4'>
                 <h2 className='font-bold'>Darling</h2>

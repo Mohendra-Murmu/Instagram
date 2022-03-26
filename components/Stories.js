@@ -12,7 +12,7 @@ function Stories() {
         setSuggestions(suggestions);
     }, [])
     return (
-        <div className='flex space-x-2 p-6 bg-white 
+        <div className='flex space-x-2 p-8 bg-white 
         mt-8 border-gray-200 border rounded-sm overflow-x-scroll scrollbar-hide'>
             {/** scrollbar-thin scrollbar-thumb-black */}
 

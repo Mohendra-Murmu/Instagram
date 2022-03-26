@@ -5,7 +5,7 @@ import MiniProfile from './MiniProfile'
 import Suggestions from './Suggestions'
 function Feed() {
     return (
-        <main className='grid grid-cols-2 md:grid-cols-2 md:max-w-3xl xl:grid-cols-3 xl:max-w-6xl
+        <main className='grid grid-cols-2 md:grid-cols-2 sm:max-w-2xl xl:grid-cols-3 xl:max-w-4xl
         mx-auto
         '>
             {/*Left Section */}

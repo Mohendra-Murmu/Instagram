@@ -12,7 +12,7 @@ import { HomeIcon } from '@heroicons/react/solid'
 function Header() {
     return (
         <div className='shadow-sm sticky border-b bg-white top-0 z-50'>
-            <div className='flex justify-between max-w-6xl mx-5 lg:mx-auto'>
+            <div className='flex justify-between max-w-4xl mx-5 lg:mx-auto'>
                 {/**Left Section */}
 
                 <div className='relative hidden lg:inline-grid w-24 cursor-pointer'>
@@ -38,7 +38,7 @@ function Header() {
                     </div>
                 </div>
                 {/**Right Section */}
-                <div className='flex items-center justify-end space-x-4'>
+                <div className='flex  items-center justify-end space-x-4'>
                     <HomeIcon className=' navBtn' />
                     <MenuIcon className='h-6 md:hidden cursor-pointer' />
                     <div className='relative navBtn'>
