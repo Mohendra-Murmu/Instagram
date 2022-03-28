@@ -10,14 +10,14 @@ const posts = [
         caption: "This is Dope!"
     },
     {
-        id: '123',
+        id: '1231',
         username: 'Mahi',
         userImg: "https://m-murmu.vercel.app/static/83c766a9376b1665e55a2bf6922a57c2/08f62/mohendra-murmu.webp",
         postImg: "https://m-murmu.vercel.app/static/83c766a9376b1665e55a2bf6922a57c2/08f62/mohendra-murmu.webp",
         caption: "This is Dope!"
     },
     {
-        id: '123',
+        id: '1232',
         username: 'Mahi',
         userImg: "https://m-murmu.vercel.app/static/83c766a9376b1665e55a2bf6922a57c2/08f62/mohendra-murmu.webp",
         postImg: "https://m-murmu.vercel.app/static/83c766a9376b1665e55a2bf6922a57c2/08f62/mohendra-murmu.webp",
@@ -27,7 +27,7 @@ const posts = [
 ]
 function Posts() {
     return (
-        <div>
+        <div className=''>
             {posts.map((post) => (
                 <Post key={post.id}
                     id={post.id} username={post.username}

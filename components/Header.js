@@ -9,16 +9,24 @@ import {
     PaperAirplaneIcon
 } from '@heroicons/react/outline'
 import { HomeIcon } from '@heroicons/react/solid'
+import { signIn, signOut, useSession } from 'next-auth/react'
+import { useRouter } from "next/router"
+import { useRecoilState } from 'recoil'
+import { modalState } from "../atoms/modalAtom"
 function Header() {
+    const router = useRouter()
+    const { data: session, status } = useSession();
+
+    const [open, setOpen] = useRecoilState(modalState);
     return (
         <div className='shadow-sm sticky border-b bg-white top-0 z-50'>
             <div className='flex justify-between max-w-4xl mx-5 lg:mx-auto'>
                 {/**Left Section */}
 
-                <div className='relative hidden lg:inline-grid w-24 cursor-pointer'>
+                <div onClick={() => router.push('/')} className='relative hidden lg:inline-grid w-24 cursor-pointer'>
                     <Image src="/instagram_logo.png" alt="Logo" layout='fill' objectFit='contain' />
                 </div>
-                <div className='relative w-10 lg:hidden flex-shrink-0 cursor-pointer'>
+                <div onClick={() => router.push('/')} className='relative w-10 lg:hidden flex-shrink-0 cursor-pointer'>
                     <Image src="/logo.png" alt="Logo" layout='fill' objectFit='contain' />
                 </div>
 
@@ -39,21 +47,30 @@ function Header() {
                 </div>
                 {/**Right Section */}
                 <div className='flex  items-center justify-end space-x-4'>
-                    <HomeIcon className=' navBtn' />
+                    <HomeIcon onClick={() => router.push('/')} className='navBtn' />
                     <MenuIcon className='h-6 md:hidden cursor-pointer' />
-                    <div className='relative navBtn'>
-                        <PaperAirplaneIcon className='navBtn rotate-45' />
-                        <div className='absolute -top-1 -right-2 text-sm w-5 h-5
+                    {session ? (
+                        <>
+                            <div className='relative navBtn'>
+                                <PaperAirplaneIcon className='navBtn rotate-45' />
+                                <div className='absolute -top-1 -right-2 text-sm w-5 h-5
                          bg-red-500 rounded-full flex items-center
                         justify-center animate-pulse text-white
                         '>3</div>
-                        {/** */}
-                    </div>
-                    <PlusCircleIcon className=' navBtn' />
-                    <UserGroupIcon className='navBtn' />
-                    <HeartIcon className=' navBtn' />
-                    <img src="https://m-murmu.vercel.app/static/83c766a9376b1665e55a2bf6922a57c2/08f62/mohendra-murmu.webp" alt="Profiole Pic"
-                        className='h-10 rounded-full cursor-pointer' />
+                            </div>
+                            <PlusCircleIcon
+                                onClick={() => setOpen(true)}
+                                className='navBtn' />
+                            <UserGroupIcon className='navBtn' />
+                            <HeartIcon className='navBtn' />
+                            <img
+                                onClick={signOut}
+                                src={session.user.image} alt={session.user.name}
+                                className='h-10 w-10 rounded-full cursor-pointer' />
+                        </>
+                    ) : (
+                        <button onClick={signIn} className="text-sm" >Sign In</button>
+                    )}
                 </div>
 
             </div>
