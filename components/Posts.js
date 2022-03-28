@@ -1,39 +1,31 @@
-import React from 'react'
+import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
+import React, { useEffect, useState } from 'react'
+import { db } from '../firebase';
 import Post from './Post'
 
-const posts = [
-    {
-        id: '123',
-        username: 'Mahi',
-        userImg: "https://m-murmu.vercel.app/static/83c766a9376b1665e55a2bf6922a57c2/08f62/mohendra-murmu.webp",
-        postImg: "https://m-murmu.vercel.app/static/83c766a9376b1665e55a2bf6922a57c2/08f62/mohendra-murmu.webp",
-        caption: "This is Dope!"
-    },
-    {
-        id: '1231',
-        username: 'Mahi',
-        userImg: "https://m-murmu.vercel.app/static/83c766a9376b1665e55a2bf6922a57c2/08f62/mohendra-murmu.webp",
-        postImg: "https://m-murmu.vercel.app/static/83c766a9376b1665e55a2bf6922a57c2/08f62/mohendra-murmu.webp",
-        caption: "This is Dope!"
-    },
-    {
-        id: '1232',
-        username: 'Mahi',
-        userImg: "https://m-murmu.vercel.app/static/83c766a9376b1665e55a2bf6922a57c2/08f62/mohendra-murmu.webp",
-        postImg: "https://m-murmu.vercel.app/static/83c766a9376b1665e55a2bf6922a57c2/08f62/mohendra-murmu.webp",
-        caption: "This is Dope!"
-    },
-
-]
 function Posts() {
+
+    const [posts, setPosts] = useState([]);
+
+    useEffect(
+        () =>
+            onSnapshot(
+                query(collection(db, 'posts'), orderBy('timestamp', 'desc')),
+                (snapshot) => {
+                    setPosts(snapshot.docs);
+                }
+            ), [db])
+    //console.log(posts)
     return (
         <div className=''>
             {posts.map((post) => (
                 <Post key={post.id}
-                    id={post.id} username={post.username}
-                    userImg={post.userImg} postImg={post.postImg} caption={post.caption} />
+                    id={post.id}
+                    username={post.data().username}
+                    userImg={post.data().profileImg}
+                    postImg={post.data().image}
+                    caption={post.data().caption} />
             ))}
-
         </div>
     )
 }
